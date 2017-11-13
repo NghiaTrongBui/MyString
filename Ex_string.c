@@ -81,3 +81,36 @@ void OvString(char** des, const char* src, int loc){
   }
   *(*des + i) = '\0';
 } 
+
+u32 SearchString(const char* text, const char* pattern)
+{
+ // r1: location of pointer in text, r2 location of pointer in pattern
+ u32 r1 = 0, r2 = 0, lp = strlen(pattern);
+ 
+ printf("%d\n", lp);
+ while(text[r1] != '\0')
+ {
+   if(text[r1] == pattern[r2])
+   {
+     r1++;
+     r2++;
+
+     if(r2 == lp)
+     {
+       return (r1 - r2);
+     }
+   }
+   else
+   { // check if value of present location == value of first pattern increase location r2
+     r2 = 0;
+     if(text[r1] == pattern[r2]) 
+     {
+       r2++;
+     }
+     
+     r1++;
+   }
+ } 
+
+ return -1
+}
